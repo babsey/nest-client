@@ -52,6 +52,7 @@ class NESTClient:
         params = {
             'source': source,
             'return': return_vars,
+            'return_vars': return_vars,
         }
         response = requests.post(self.url + 'exec', json=params, headers=self.headers)
         return encode(response)
