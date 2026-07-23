@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# NESTClient_script.py
+# NESTClient_example.py
 #
 # This file is part of NEST.
 #
@@ -19,22 +19,16 @@
 # You should have received a copy of the GNU General Public License
 # along with NEST.  If not, see <http://www.gnu.org/licenses/>.
 
-import nest
+from nest_client import NESTClient
 
-# Reset kernel
-nest.ResetKernel()
+print("Running client exec example using NEST via NEST Server")
 
-# Create nodes
-pg = nest.Create("poisson_generator", params={"rate": 6500})
-neurons = nest.Create("iaf_psc_alpha", 100)
-sr = nest.Create("spike_recorder")
+# Load NEST client
+nest = NESTClient()
 
-# Connect nodes
-nest.Connect(pg, neurons, syn_spec={"weight": 10})
-nest.Connect(neurons[::10], sr)
+print("\n")
+print("Execute script code from file")
+print("-" * 20)
 
-# Simulate
-nest.Simulate(1000)
-
-# Get events
-n_events = sr.get("n_events")
+n_events = nest.from_file("NESTClient_script.py", "n_events")["data"]
+print("Number of events:", n_events)

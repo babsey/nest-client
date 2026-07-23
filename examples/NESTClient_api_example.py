@@ -21,14 +21,11 @@
 
 from nest_client import NESTClient
 
-print("Running client examples using NEST via NEST Server")
+print("Running client api example using NEST via NEST Server")
 
 # Load NEST client
 nest = NESTClient()
 
-#
-# Use NEST Server API
-#
 print("\n")
 print("Execute script code with NEST Server API")
 print("-" * 20)
@@ -37,28 +34,17 @@ print("-" * 20)
 nest.ResetKernel()
 
 # Create nodes
-pg = nest.Create("poisson_generator", params={"rate": 6500.0})
+pg = nest.Create("poisson_generator", params={"rate": 6500})
 neurons = nest.Create("iaf_psc_alpha", 100)
 sr = nest.Create("spike_recorder")
 
 # Connect nodes
-nest.Connect(pg, neurons, syn_spec={"weight": 10.0})
+nest.Connect(pg, neurons, syn_spec={"weight": 10})
 nest.Connect(neurons[::10], sr)
 
 # Simulate
-nest.Simulate(1000.0)
+nest.Simulate(1000)
 
 # Get events
 n_events = nest.GetStatus(sr, "n_events")[0]
-print("Number of events:", n_events)
-
-
-#
-# Use NEST Server exec
-#
-print("\n")
-print("Execute script code from file")
-print("-" * 20)
-
-n_events = nest.from_file("NESTClient_script.py", "n_events")["data"]
 print("Number of events:", n_events)
