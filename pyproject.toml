@@ -1,9 +1,9 @@
 [project]
 name = "nest-client"
-version = "0.1.1"
+version = "0.2.0"
 description = "NEST Client sends JSON requests to NEST Server."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license-files = ["LICENSE"]
 authors = [
   {name = "Dennis Terhorst"},
@@ -13,31 +13,42 @@ authors = [
 maintainers = [
   {name = "Dennis Terhorst", email = "d.terhorst@fz-juelich.de"}
 ]
-# keywords = []
+# keywords = ["NEST", "simulation", "client"]
 classifiers = [
   # How mature is this project? Common values are
   #   3 - Alpha
   #   4 - Beta
   #   5 - Production/Stable
-  "Development Status :: 5 - Stable",
+  "Development Status :: 4 - Beta",
 
   # Indicate who your project is intended for
+  "Intended Audience :: Education",
   "Intended Audience :: Science/Research",
 
+  "Topic :: Education",
   "Topic :: Scientific/Engineering",
 
   # Specify the Python versions you support here.
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
-dependencies = [
-  "requests",
-  "werkzeug",
-]
+# dependencies = [
+#  "requests",
+#  "werkzeug",
+#]
+dynamic = ["dependencies"]
 
 [project.urls]
 homepage = "https://nest-simulator.org"
 repository = "https://github.com/nest/nest-client"
 documentation = "https://nest-simulator.readthedocs.io"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
 
 [tool.black]
 line-length = 120
@@ -52,15 +63,3 @@ line_length = 120
 multi_line_output = 3
 profile = "black"
 skip_gitignore = true
-
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "--mypy --pylint --pydocstyle --cov --ignore=conda --ignore=venv --ignore=.git --ignore=__pycache__"
-norecursedirs = ".git _build venv tmp*"
-
-[tool.mypy]
-exclude = ".git/, .pytest_cache/, conda/, venv/"
-
-[tool.pydocstyle]
-convention = "numpy"
-add-ignore = "D300"
