@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-#
-# NESTClient_example.py
+# NESTClient_api_example.py
 #
 # This file is part of NEST.
 #
@@ -25,10 +23,6 @@ print("Running client api example using NEST via NEST Server")
 
 # Load NEST client
 nest = NESTClient()
-
-print("\n")
-print("Execute script code with NEST Server API")
-print("-" * 20)
 
 # Reset kernel
 nest.ResetKernel()

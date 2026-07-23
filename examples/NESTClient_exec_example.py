@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-#
-# NESTClient_example.py
+# NESTClient_exec_example.py
 #
 # This file is part of NEST.
 #
@@ -19,6 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with NEST.  If not, see <http://www.gnu.org/licenses/>.
 
+from pathlib import Path
+
 from nest_client import NESTClient
 
 print("Running client exec example using NEST via NEST Server")
@@ -26,9 +26,5 @@ print("Running client exec example using NEST via NEST Server")
 # Load NEST client
 nest = NESTClient()
 
-print("\n")
-print("Execute script code from file")
-print("-" * 20)
-
-n_events = nest.from_file("NESTClient_script.py", "n_events")["data"]
+n_events = nest.from_file(Path(__file__).parent / "NESTClient_script.py", "n_events")["data"]
 print("Number of events:", n_events)

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # NESTClient_script.py
 #
 # This file is part of NEST.
