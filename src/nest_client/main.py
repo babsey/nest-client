@@ -47,13 +47,22 @@ class NESTClient:
         self.url = url
         self.headers = {**default_headers, **headers}
 
-    def __getattr__(self, call):
+    def get(self, path: str, params={}, **kwargs):
+        return requests.get(f"{self.url}{path}", params, headers=self.headers, **kwargs)
+
+    def post(self, path: str, data={}, json={}, **kwargs):
+        return requests.post(f"{self.url}{path}", data=data, json=json, headers=self.headers, **kwargs)
+
+    def __getattr__(self, call: str):
         def method(*args, **kwargs):
-            kwargs.update({"args": args})
-            response = requests.post(f"{self.url}/api/{call}", json=kwargs, headers=self.headers)
-            return encode(response)
+            return self.api_call(call, args, kwargs)
 
         return method
+
+    def api_call(self, call: str, args: list, kwargs: dict):
+        kwargs.update({"args": args})
+        response = requests.post(f"{self.url}/api/{call}", json=kwargs, headers=self.headers)
+        return encode(response)
 
     def exec_script(self, source: str, return_vars: str | list[str] = None):
         params = {
