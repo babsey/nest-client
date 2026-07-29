@@ -1,5 +1,4 @@
 [pytest]
 markers = [
-  "not_mpi: marks tests with nest-server (deselect with '-m \"not not_mpi\"')",
-  "mpi: marks tests with nest-server-mpi (deselect with '-m \"not mpi\"')",
+  "not_mpi: marks tests which should not run with nest-server-mpi (deselect with '-m \"not not_mpi\"')",
 ]
