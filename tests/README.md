@@ -39,17 +39,18 @@ uv run --with pytest pytest -m 'not not_mpi'
 
 ### Debugging tests
 
-Add debug log.
+Add debug logger.
 
 ```
-from app_test_client import logger
+import logging
+logger = logging.getLogger()
 
 ...
 
 logger.debug("Hello world")
 ```
 
-Run with log level for debug.
+Run pytest with debugs.
 
 ```
 uv run --with pytest pytest --log-level debug

@@ -2,7 +2,6 @@ from random import randint
 
 from helpers import has_ids, repeat, tile
 
-
 size = randint(2, 5)
 
 

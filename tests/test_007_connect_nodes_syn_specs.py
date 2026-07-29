@@ -1,7 +1,5 @@
 from random import randint
 
-import pytest
-
 
 def test_selfconnect_static_synapse(nest):  # noqa: F811
     synapse_model = "static_synapse"

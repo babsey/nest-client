@@ -1,7 +1,5 @@
 from random import shuffle
 
-import pytest
-
 
 def test_simulate_single_spike_recorder_no_event(nest):  # noqa: F811
     sr_ids = nest.Create("spike_recorder")

@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_simulate(nest):  # noqa: F811
     biological_time = nest.GetKernelStatus("biological_time")
     assert isinstance(biological_time, float)

@@ -1,6 +1,3 @@
-has_mpi = False
-
-
 def test_get_request(nest):  # noqa: F811
 
     response = nest.get("/")
