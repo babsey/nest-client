@@ -34,7 +34,8 @@ logger = logging.getLogger()
 
 
 @pytest.fixture
-def nest():
+def nest() -> NESTClient:
     nest = NESTClient()
+    nest.state["has_mpi"] = nest.get("/").json()["mpi"]
     nest.ResetKernel()
     return nest

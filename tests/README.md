@@ -25,6 +25,18 @@ Run pytest in virtual environment.
 uv run --with pytest pytest
 ```
 
+Increase verbosity (to see the test functions)
+
+```
+uv run --with pytest pytest -v
+```
+
+Run pytest with NEST Server MPI (deselect not_mpi markers)
+
+```
+uv run --with pytest pytest -m 'not not_mpi'
+```
+
 ### Debugging tests
 
 Add debug log.
