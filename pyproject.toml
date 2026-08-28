@@ -1,6 +1,6 @@
 [project]
 name = "nest-client"
-version = "0.2.0"
+version = "0.2.0b1"
 description = "NEST Client sends JSON requests to NEST Server."
 readme = "README.md"
 requires-python = ">=3.10"
