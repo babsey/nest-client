@@ -41,16 +41,15 @@ class NESTClient:
 
     def __init__(self, url: str = default_url, headers: dict = default_headers):
         self.url = url
-        self.headers = {**default_headers, **headers}
+        self.session = requests.Session()
+        self.session.headers.update({**default_headers, **headers})
         self.state = {}
 
     def get(self, path: str, *args, **kwargs):
-        kwargs.update({"headers": self.headers})
-        return requests.get(f"{self.url}{path}", *args, **kwargs)
+        return self.session.get(f"{self.url}{path}", *args, **kwargs)
 
     def post(self, path: str, *args, **kwargs):
-        kwargs.update({"headers": self.headers})
-        return requests.post(f"{self.url}{path}", *args, **kwargs)
+        return self.session.post(f"{self.url}{path}", *args, **kwargs)
 
     def __getattr__(self, call: str):
         def method(*args, **kwargs):
@@ -58,7 +57,7 @@ class NESTClient:
 
         return method
 
-    def api_call(self, call: str, args: list, kwargs: dict):
+    def api_call(self, call: str, args: list = [], kwargs: dict = {}):
         kwargs.update({"args": args})
         response = self.post(f"/api/{call}", json=kwargs)
         return encode(response)
