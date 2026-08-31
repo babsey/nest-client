@@ -39,13 +39,10 @@ def encode(response):
 
 class NESTClient:
 
-    def __init__(
-        self,
-        url: str = default_url,
-        headers: dict = default_headers,
-    ):
+    def __init__(self, url: str = default_url, headers: dict = default_headers):
         self.url = url
         self.headers = {**default_headers, **headers}
+        self.state = {}
 
     def get(self, path: str, *args, **kwargs):
         kwargs.update({"headers": self.headers})

@@ -56,7 +56,7 @@ dev = [
 ]
 
 test = [
-  "nest-server>=3.0",
+  "nest-server@git+ssh://git@github.com/nest/nest-server.git",
 ]
 
 [tool.setuptools.dynamic]
