@@ -5,7 +5,7 @@ from helpers import has_ids, repeat
 size = randint(2, 5)
 
 
-def test_selfconnect_node(nest):  # noqa: F811
+def test_selfconnect_node(nest):
     node_ids = nest.Create("iaf_psc_alpha")
 
     syn_dict = nest.Connect(node_ids, node_ids, return_synapsecollection=True)
@@ -17,7 +17,7 @@ def test_selfconnect_node(nest):  # noqa: F811
     assert syn_dict["source"] == syn_dict["target"] == node_ids[0]
 
 
-def test_selfconnect_nodes(nest):  # noqa: F811
+def test_selfconnect_nodes(nest):
     node_ids = nest.Create("iaf_psc_alpha", n=size)
 
     syn_dict = nest.Connect(node_ids, node_ids, return_synapsecollection=True)
@@ -35,7 +35,7 @@ def test_selfconnect_nodes(nest):  # noqa: F811
         #       e.g. [3, 4, 2, 1, 3, 2, ...] == [1, 2, 3, 4, 1, 2, ...]
 
 
-def test_connect_multiple_nodes(nest):  # noqa: F811
+def test_connect_multiple_nodes(nest):
     node_ids = nest.Create("iaf_psc_alpha", n=2)
 
     syn_dict = nest.Connect([node_ids[0]], [node_ids[1]], return_synapsecollection=True)
@@ -48,7 +48,7 @@ def test_connect_multiple_nodes(nest):  # noqa: F811
     assert syn_dict["target"] == node_ids[1]
 
 
-def test_connect_distinct_source_target(nest):  # noqa: F811
+def test_connect_distinct_source_target(nest):
     source_ids = nest.Create("iaf_psc_alpha")
     target_ids = nest.Create("iaf_psc_alpha")
 
@@ -62,7 +62,7 @@ def test_connect_distinct_source_target(nest):  # noqa: F811
     assert syn_dict["target"] == target_ids[0]
 
 
-def test_connect_distinct_multiple_nodes(nest):  # noqa: F811
+def test_connect_distinct_multiple_nodes(nest):
     source_size = randint(2, 5)
     target_size = randint(2, 5)
 

@@ -1,6 +1,6 @@
 [project]
 name = "nest-client"
-version = "0.2.0b1"
+version = "0.2.0b2"
 description = "NEST Client sends JSON requests to NEST Server."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -36,11 +36,10 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
 ]
-# dependencies = [
-#  "requests",
-#  "werkzeug",
-#]
-dynamic = ["dependencies"]
+dependencies = [
+  "requests>=2.34",
+  "werkzeug>=3.1",
+]
 
 [project.urls]
 homepage = "https://nest-simulator.org"
@@ -49,18 +48,22 @@ documentation = "https://nest-simulator.readthedocs.io"
 
 [dependency-groups]
 dev = [
-  "black>=26.5.1",
-  "flake8>=7.3.0",
-  "isort>=8.0.1",
-  "pre-commit>=4.6.0",
+  # "black>=26.5",
+  # "flake8>=7.3",
+  # "isort>=8.0",
+  "pre-commit>=4.6",
+  "pytest>=9.1",
+  "pytest-cov>=7.1",
+  "ruff>=0.16.5",
 ]
 
-test = [
+nest = [
   "nest-server@git+ssh://git@github.com/nest/nest-server.git",
 ]
 
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"
 
 [tool.black]
 line-length = 120
@@ -75,3 +78,6 @@ line_length = 120
 multi_line_output = 3
 profile = "black"
 skip_gitignore = true
+
+[tool.ruff]
+line-length = 120

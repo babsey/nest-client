@@ -1,4 +1,4 @@
-def test_simulate(nest):  # noqa: F811
+def test_simulate(nest):
     biological_time = nest.GetKernelStatus("biological_time")
     assert isinstance(biological_time, float)
     assert biological_time == 0

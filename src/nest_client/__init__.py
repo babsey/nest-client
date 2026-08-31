@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # __init__.py
 #
 # This file is part of NEST.

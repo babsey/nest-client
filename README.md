@@ -28,14 +28,24 @@ client.
 - For API calls:
 
   ```
-  python ./examples/NESTClient_api_example.py
+  python ./examples/api_example.py
   ```
 
-- For Exec call:
+- For exec call:
 
   ```
-  python ./examples/NESTClient_exec_example.py
+  python ./examples/exec_example.py
   ```
+
+
+### Development stage
+
+#### Test against multiple Python versions using uv
+
+```
+make test-all
+```
+
 
 ### References
 

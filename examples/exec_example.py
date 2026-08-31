@@ -1,4 +1,4 @@
-# NESTClient_exec_example.py
+# exec_example.py
 #
 # This file is part of NEST.
 #
@@ -23,8 +23,8 @@ from nest_client import NESTClient
 
 print("Running client exec example using NEST via NEST Server")
 
-# Load NEST client
+# Initialize NEST client
 nest = NESTClient()
 
-n_events = nest.from_file(Path(__file__).parent / "NESTClient_script.py", "n_events")["data"]
+n_events = nest.from_file(Path(__file__).parent / "nest_script.py", "n_events")["data"]
 print("Number of events:", n_events)

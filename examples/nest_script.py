@@ -1,4 +1,4 @@
-# NESTClient_api_example.py
+# nest_script.py
 #
 # This file is part of NEST.
 #
@@ -17,12 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with NEST.  If not, see <http://www.gnu.org/licenses/>.
 
-from nest_client import NESTClient
-
-print("Running client api example using NEST via NEST Server")
-
-# Load NEST client
-nest = NESTClient()
+import nest
 
 # Reset kernel
 nest.ResetKernel()
@@ -40,5 +35,4 @@ nest.Connect(neurons[::10], sr)
 nest.Simulate(1000)
 
 # Get events
-n_events = nest.GetStatus(sr, "n_events")[0]
-print("Number of events:", n_events)
+n_events = sr.get("n_events")

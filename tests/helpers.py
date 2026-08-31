@@ -5,8 +5,7 @@ def flatten(values: list) -> list:
 
 # [1,1,2,2]
 def repeat(a: list, n: int) -> list:
-    v = [n * [i] for i in a]
-    return flatten(v)
+    return flatten([n * [i] for i in a])
 
 
 # [1,2,1,2]
@@ -26,4 +25,4 @@ def has_ids(
         return ids in ref_ids
 
     elif isinstance(ids, list):
-        return all([id in ref_ids for id in ids])
+        return all(id in ref_ids for id in ids)

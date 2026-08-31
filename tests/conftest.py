@@ -19,7 +19,11 @@ logger = logging.getLogger()
 #         }
 #     )
 
-#     thread = Thread(target=nest_server_app.run, daemon=True, kwargs=dict(host="localhost", port=52425)) # noqa: W505
+#     thread = Thread(
+#         target=nest_server_app.run,
+#         daemon=True,
+#         kwargs=dict(host="localhost", port=52425)
+#     )
 #     thread.start()
 
 #     # other setup can go here
