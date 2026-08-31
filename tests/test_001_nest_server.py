@@ -1,4 +1,4 @@
-def test_get_request(nest):  # noqa: F811
+def test_get_request(nest):
 
     response = nest.get("/")
     assert response.status_code == 200

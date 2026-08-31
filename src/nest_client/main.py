@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # main.py
 #
 # This file is part of NEST.
@@ -38,7 +36,6 @@ def encode(response):
 
 
 class NESTClient:
-
     def __init__(self, url: str = default_url, headers: dict = default_headers):
         self.url = url
         self.session = requests.Session()
@@ -57,12 +54,19 @@ class NESTClient:
 
         return method
 
-    def api_call(self, call: str, args: list = [], kwargs: dict = {}):
+    def api_call(self, call: str, args: list | None = None, kwargs: dict | None = None):
+
+        if args is None:
+            args = []
+
+        if kwargs is None:
+            kwargs = {}
+
         kwargs.update({"args": args})
         response = self.post(f"/api/{call}", json=kwargs)
         return encode(response)
 
-    def exec_script(self, source: str, return_vars: str | list[str] = None):
+    def exec_script(self, source: str, return_vars: str | list[str] | None = None):
         params = {
             "source": source,
             "return": return_vars,
@@ -71,7 +75,7 @@ class NESTClient:
         response = self.post("/exec", json=params)
         return encode(response)
 
-    def from_file(self, filename: str, return_vars: str | list[str] = None):
+    def from_file(self, filename: str, return_vars: str | list[str] | None = None):
         with open(filename, "r") as f:
             lines = f.readlines()
         script = "".join(lines)

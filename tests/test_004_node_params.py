@@ -1,7 +1,7 @@
 import pytest
 
 
-def test_api_create_node_then_set_param(nest):  # noqa: F811
+def test_api_create_node_then_set_param(nest):
     I_e = 376
 
     node_ids = nest.Create("iaf_psc_alpha")
@@ -12,7 +12,7 @@ def test_api_create_node_then_set_param(nest):  # noqa: F811
     assert node_I_e == I_e
 
 
-def test_api_create_multiple_nodes_then_set_params(nest):  # noqa: F811
+def test_api_create_multiple_nodes_then_set_params(nest):
     I_e = 376
 
     node_ids = nest.Create("iaf_psc_alpha", n=2)
@@ -25,7 +25,7 @@ def test_api_create_multiple_nodes_then_set_params(nest):  # noqa: F811
 
 
 @pytest.mark.not_mpi
-def test_api_create_multiple_nodes_then_set_various_params(nest):  # noqa: F811
+def test_api_create_multiple_nodes_then_set_various_params(nest):
     """
     BUG: Testing on NEST Server MPI shows error:
     Failed to execute call: Expected datatype: Failed to cast '<param_id>' from

@@ -1,7 +1,7 @@
 from random import randint
 
 
-def test_selfconnect_static_synapse(nest):  # noqa: F811
+def test_selfconnect_static_synapse(nest):
     synapse_model = "static_synapse"
     node_ids = nest.Create("iaf_psc_alpha")
 
@@ -10,7 +10,7 @@ def test_selfconnect_static_synapse(nest):  # noqa: F811
     assert syn_dict["synapse_model"] == synapse_model
 
 
-def test_selfconnect_synapse_weight(nest):  # noqa: F811
+def test_selfconnect_synapse_weight(nest):
     weight = randint(-10, 10)
     node_ids = nest.Create("iaf_psc_alpha")
 
@@ -20,7 +20,7 @@ def test_selfconnect_synapse_weight(nest):  # noqa: F811
     assert syn_dict["weight"] == weight
 
 
-def test_selfconnect_synapse_delay(nest):  # noqa: F811
+def test_selfconnect_synapse_delay(nest):
     delay = randint(1, 10)
     node_ids = nest.Create("iaf_psc_alpha")
 
