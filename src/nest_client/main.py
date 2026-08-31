@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# nest_client.py
+# main.py
 #
 # This file is part of NEST.
 #
