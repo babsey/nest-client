@@ -1,6 +1,6 @@
 from random import randint
 
-from helpers import has_ids, repeat, tile
+from helpers import has_ids, repeat
 
 size = randint(2, 5)
 
@@ -126,7 +126,8 @@ def test_selfconnect_fixed_indegrees(nest):  # noqa: F811
     assert has_ids(syn_dict["source"], node_ids)
     assert has_ids(syn_dict["target"], node_ids)
     # assert syn_dict["target"] == repeat(node_ids, indegree)  # fixed
-    # NOTE: Target ids are not repeated as expected, e.g. [2, 2, 3, 1, 1, 3] == [1, 1, 2, 2, 3, 3]
+    # NOTE: Target ids are not repeated as expected,
+    #       e.g. [2, 2, 3, 1, 1, 3] == [1, 1, 2, 2, 3, 3]
 
 
 def test_selfconnect_fixed_total_number(nest):  # noqa: F811

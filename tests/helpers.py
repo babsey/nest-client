@@ -14,7 +14,7 @@ def tile(a: list, n: int) -> list:
     return n * a
 
 
-### Check synapse dictionary (exported from SynapseCollection)
+# Check synapse dictionary (exported from SynapseCollection)
 def has_ids(
     ids: list | int,
     ref_ids: list,
