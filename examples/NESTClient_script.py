@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # NESTClient_script.py
 #
 # This file is part of NEST.
@@ -21,21 +19,20 @@
 
 import nest
 
-
 # Reset kernel
 nest.ResetKernel()
 
 # Create nodes
-pg = nest.Create("poisson_generator", params={"rate": 6500.})
+pg = nest.Create("poisson_generator", params={"rate": 6500})
 neurons = nest.Create("iaf_psc_alpha", 100)
 sr = nest.Create("spike_recorder")
 
 # Connect nodes
-nest.Connect(pg, neurons, syn_spec={"weight": 10.})
+nest.Connect(pg, neurons, syn_spec={"weight": 10})
 nest.Connect(neurons[::10], sr)
 
 # Simulate
-nest.Simulate(1000.)
+nest.Simulate(1000)
 
 # Get events
 n_events = sr.get("n_events")

@@ -1,4 +1,3 @@
-
 name: RunTests
 on: push
 
@@ -11,26 +10,25 @@ jobs:
       # Label used to access the service container
       nestserver:
         # Docker Hub image
-        image: nestsim/nest:3.2
+        image: nest/nest-simulator:3.10
         env:
           NEST_CONTAINER_MODE: nest-server
         ports:
-          - 5000:5000
+          - 52425:52425
         options: >-
-          --health-cmd "curl http://localhost:5000"
+          --health-cmd "curl http://localhost:52425"
           --health-interval 5s
           --health-timeout 3s
           --health-retries 5
 
     steps:
       - run: env
-      - run: curl http://localhost:5000
+      - run: curl http://localhost:52425
       - run: >
-          echo '{"mpi":false,"nest":"3.2"}' >expected;
-          curl -s http://localhost:5000 | diff -u expected -
+          echo '{"mpi":false,"nest":"3.10.0"}' >expected;
+          curl -s http://localhost:52425 | diff -u expected -
     env:
-      server_version: "3.2"
-
+      server_version: "3.10"
 
   style-tests:
     runs-on: ubuntu-latest

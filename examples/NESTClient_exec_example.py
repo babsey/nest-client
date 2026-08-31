@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-#
-# setup.py
+# NESTClient_exec_example.py
 #
 # This file is part of NEST.
 #
@@ -19,16 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with NEST.  If not, see <http://www.gnu.org/licenses/>.
 
-# NEST Client -- A client for the NEST Server
+from pathlib import Path
 
-from distutils.core import setup
+from nest_client import NESTClient
 
-setup(name='NEST Client',
-      version='0.1',
-      description=('NEST Client sends JSON requests to NEST Server.'),
-      author='Sebastian Spreizer',
-      author_email='spreizer@web.de',
-      url='https://www.nest-simulator.org',
-      license='GNU Public License v2 or later',
-      packages=['nest_client'],
-      )
+print("Running client exec example using NEST via NEST Server")
+
+# Load NEST client
+nest = NESTClient()
+
+n_events = nest.from_file(Path(__file__).parent / "NESTClient_script.py", "n_events")["data"]
+print("Number of events:", n_events)

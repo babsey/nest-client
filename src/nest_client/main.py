@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# nest_client.py
+# main.py
 #
 # This file is part of NEST.
 #
@@ -22,10 +22,12 @@
 import requests
 from werkzeug.exceptions import BadRequest
 
-
 __all__ = [
-    'NESTClient',
+    "NESTClient",
 ]
+
+default_url = "http://localhost:52425"
+default_headers = {"Content-type": "application/json", "Accept": "text/plain"}
 
 
 def encode(response):
@@ -37,32 +39,40 @@ def encode(response):
 
 class NESTClient:
 
-    def __init__(self, host='localhost', port=52425):
-        self.url = 'http://{}:{}/'.format(host, port)
-        self.headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    def __init__(
+        self,
+        url: str = default_url,
+        headers: dict = default_headers,
+    ):
+        self.url = url
+        self.headers = {**default_headers, **headers}
 
     def __getattr__(self, call):
         def method(*args, **kwargs):
-            kwargs.update({'args': args})
-            response = requests.post(self.url + 'api/' + call, json=kwargs, headers=self.headers)
+            kwargs.update({"args": args})
+            response = requests.post(f"{self.url}/api/{call}", json=kwargs, headers=self.headers)
             return encode(response)
+
         return method
 
-    def exec_script(self, source, return_vars=None):
+    def exec_script(self, source: str, return_vars: str | list[str] = None):
         params = {
-            'source': source,
-            'return': return_vars,
+            "source": source,
+            "return": return_vars,
+            "return_vars": return_vars,
         }
-        response = requests.post(self.url + 'exec', json=params, headers=self.headers)
+        response = requests.post(f"{self.url}/exec", json=params, headers=self.headers)
         return encode(response)
 
-    def from_file(self, filename, return_vars=None):
-        with open(filename, 'r') as f:
+    def from_file(self, filename: str, return_vars: str | list[str] = None):
+        with open(filename, "r") as f:
             lines = f.readlines()
-        script = ''.join(lines)
-        print('Execute script code of {}'.format(filename))
-        print('Return variables: {}'.format(return_vars))
-        print(20 * '-')
+        script = "".join(lines)
+
+        print(f"Execute script code of {filename}")
+        print(f"Return variables: {return_vars}")
+        print(20 * "-")
         print(script)
-        print(20 * '-')
+        print(20 * "-")
+
         return self.exec_script(script, return_vars)

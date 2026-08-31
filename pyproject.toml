@@ -1,0 +1,77 @@
+[project]
+name = "nest-client"
+version = "0.2.0b1"
+description = "NEST Client sends JSON requests to NEST Server."
+readme = "README.md"
+requires-python = ">=3.10"
+license-files = ["LICENSE"]
+authors = [
+  {name = "Dennis Terhorst"},
+  {name = "Jochen M. Eppler"},
+  {name = "Sebastian Spreizer"},
+]
+maintainers = [
+  {name = "Dennis Terhorst", email = "d.terhorst@fz-juelich.de"}
+]
+# keywords = ["NEST", "simulation", "client"]
+classifiers = [
+  # How mature is this project? Common values are
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 4 - Beta",
+
+  # Indicate who your project is intended for
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+
+  "Topic :: Education",
+  "Topic :: Scientific/Engineering",
+
+  # Specify the Python versions you support here.
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+]
+# dependencies = [
+#  "requests",
+#  "werkzeug",
+#]
+dynamic = ["dependencies"]
+
+[project.urls]
+homepage = "https://nest-simulator.org"
+repository = "https://github.com/nest/nest-client"
+documentation = "https://nest-simulator.readthedocs.io"
+
+[dependency-groups]
+dev = [
+  "black>=26.5.1",
+  "flake8>=7.3.0",
+  "isort>=8.0.1",
+  "pre-commit>=4.6.0",
+]
+
+test = [
+  "nest-server>=3.0",
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.black]
+line-length = 120
+
+[tool.flake8]
+# This is ignored
+# see discussions around https://github.com/PyCQA/flake8/issues/234
+
+[tool.isort]
+atomic = true
+line_length = 120
+multi_line_output = 3
+profile = "black"
+skip_gitignore = true
