@@ -16,7 +16,7 @@ format:
 	uv run ruff format
 
 clean:
-	rm -rf .venv .venv-* dist *.egg-info .pytest_cache
+	rm -rf .venv .venv-* dist *.egg-info .pytest_cache .mypy_cache .ruff_cache
 
 test-all: $(TEST_PY_TARGETS)
 
