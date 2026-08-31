@@ -44,11 +44,13 @@ class NESTClient:
         self.headers = {**default_headers, **headers}
         self.state = {}
 
-    def get(self, path: str, params={}, **kwargs):
-        return requests.get(f"{self.url}{path}", params, headers=self.headers, **kwargs)
+    def get(self, path: str, *args, **kwargs):
+        kwargs.update({"headers": self.headers})
+        return requests.get(f"{self.url}{path}", *args, **kwargs)
 
-    def post(self, path: str, data={}, json={}, **kwargs):
-        return requests.post(f"{self.url}{path}", data=data, json=json, headers=self.headers, **kwargs)
+    def post(self, path: str, *args, **kwargs):
+        kwargs.update({"headers": self.headers})
+        return requests.post(f"{self.url}{path}", *args, **kwargs)
 
     def __getattr__(self, call: str):
         def method(*args, **kwargs):
@@ -58,7 +60,7 @@ class NESTClient:
 
     def api_call(self, call: str, args: list, kwargs: dict):
         kwargs.update({"args": args})
-        response = requests.post(f"{self.url}/api/{call}", json=kwargs, headers=self.headers)
+        response = self.post(f"/api/{call}", json=kwargs)
         return encode(response)
 
     def exec_script(self, source: str, return_vars: str | list[str] = None):
@@ -67,7 +69,7 @@ class NESTClient:
             "return": return_vars,
             "return_vars": return_vars,
         }
-        response = requests.post(f"{self.url}/exec", json=params, headers=self.headers)
+        response = self.post("/exec", json=params)
         return encode(response)
 
     def from_file(self, filename: str, return_vars: str | list[str] = None):
