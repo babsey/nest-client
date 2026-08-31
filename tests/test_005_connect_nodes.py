@@ -1,6 +1,6 @@
 from random import randint
 
-from helpers import has_ids, repeat, tile
+from helpers import has_ids, repeat
 
 size = randint(2, 5)
 
@@ -31,7 +31,8 @@ def test_selfconnect_nodes(nest):  # noqa: F811
     if not nest.state["has_mpi"]:
         assert syn_dict["source"] == repeat(node_ids, size)
         # assert syn_dict["target"] == tile(node_ids, size)
-        # NOTE: Target ids are not tiled as expected, e.g. [3, 4, 2, 1, 3, 2, ...] == [1, 2, 3, 4, 1, 2, ...]
+        # NOTE: Target ids are not tiled as expected,
+        #       e.g. [3, 4, 2, 1, 3, 2, ...] == [1, 2, 3, 4, 1, 2, ...]
 
 
 def test_connect_multiple_nodes(nest):  # noqa: F811
@@ -79,4 +80,5 @@ def test_connect_distinct_multiple_nodes(nest):  # noqa: F811
     if not nest.state["has_mpi"]:
         assert syn_dict["source"] == repeat(source_ids, target_size)
         # assert syn_dict["target"] == tile(target_ids, source_size)
-        # NOTE: Target ids are not tiled as expected, e.g. [9, 6, 8, 7, 5, 6, ...] == [5, 6, 7, 8, 9, 5, ...]
+        # NOTE: Target ids are not tiled as expected,
+        #       e.g. [9, 6, 8, 7, 5, 6, ...] == [5, 6, 7, 8, 9, 5, ...]
