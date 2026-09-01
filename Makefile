@@ -7,16 +7,16 @@ sync:
 	uv sync
 
 test:
-	uv run pytest
+	uv run pytest --cov=./src/nest_client
 
 lint:
-	uv run ruff check
+	uv run ruff check .
 
 format:
-	uv run ruff format
+	uv run ruff format --check .
 
 clean:
-	rm -rf .venv .venv-* dist *.egg-info .pytest_cache .mypy_cache .ruff_cache
+	rm -rf .venv .venv-* dist *.egg-info .pytest_cache .mypy_cache .ruff_cache .coverage
 
 test-all: $(TEST_PY_TARGETS)
 
