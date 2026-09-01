@@ -3,7 +3,7 @@ on: push
 
 jobs:
   integration-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     # Service containers to run with `integration-tests`
     services:
@@ -12,7 +12,6 @@ jobs:
         # Docker Hub image
         image: nest/nest-simulator:3.10
         env:
-          LOCAL_USER_ID: "`id -u $USER`"
           NEST_CONTAINER_MODE: nest-server
           NEST_SERVER_STDOUT: 1
         ports:
