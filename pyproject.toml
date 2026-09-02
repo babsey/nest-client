@@ -57,9 +57,9 @@ dev = [
   "ruff>=0.16.5",
 ]
 
-nest = [
-  "nest-server@git+ssh://git@github.com/nest/nest-server.git",
-]
+# nest = [
+#   "nest-server@git+ssh://git@github.com/nest/nest-server.git",
+# ]
 
 [build-system]
 requires = ["uv_build>=0.12.7,<0.13.0"]
