@@ -85,7 +85,7 @@ jobs:
       - name: Install the project
         run: make sync
 
-      - name: Run pytest
+      - name: Run pytest with coverage
         run: make test-cov
 
   pytest-all:
