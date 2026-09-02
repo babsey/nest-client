@@ -8,6 +8,8 @@ on:
 jobs:
   setup-uv:
     runs-on: ubuntu-latest
+    env:
+      UV_CACHE_DIR: /tmp/.uv-cache
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -20,9 +22,14 @@ jobs:
       - name: Install the project
         run: make sync
 
+      - name: Minimize uv cache
+        run: uv cache prune --ci
+
   lint:
     runs-on: ubuntu-latest
     needs: [setup-uv]
+    env:
+      UV_CACHE_DIR: /tmp/.uv-cache
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -38,9 +45,14 @@ jobs:
       - name: Check code lints with Ruff
         run: make lint
 
+      - name: Minimize uv cache
+        run: uv cache prune --ci
+
   format:
     runs-on: ubuntu-latest
     needs: [setup-uv]
+    env:
+      UV_CACHE_DIR: /tmp/.uv-cache
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -56,9 +68,14 @@ jobs:
       - name: Check code formats with Ruff
         run: make format
 
+      - name: Minimize uv cache
+        run: uv cache prune --ci
+
   pytest-cov:
     runs-on: ubuntu-latest
     needs: [lint, format]
+    env:
+      UV_CACHE_DIR: /tmp/.uv-cache
 
     services:
       nest-server:
@@ -88,9 +105,14 @@ jobs:
       - name: Run pytest with coverage
         run: make test-cov
 
+      - name: Minimize uv cache
+        run: uv cache prune --ci
+
   pytest-all:
     runs-on: ubuntu-latest
     needs: [lint, format]
+    env:
+      UV_CACHE_DIR: /tmp/.uv-cache
 
     services:
       nest-server:
@@ -119,3 +141,6 @@ jobs:
 
       - name: Run pytest for multiple Python versions
         run: make test-all
+
+      - name: Minimize uv cache
+        run: uv cache prune --ci
