@@ -19,7 +19,7 @@ typical simulation once for PyNEST and once using the NEST Client.
 The client can be installed with this command:
 
 ```
-pip install -e .
+pip install nest-client
 ```
 
 The directory `examples` holds some examples that demonstrate the usage of the
@@ -37,15 +37,21 @@ client.
   python ./examples/exec_example.py
   ```
 
+### Development mode
 
-### Development stage
+We recommend to use virtual environment, e.g. with `uv`:
+
+Install `nest-client` as an editable package
+
+```
+uv pip install -e .
+```
 
 #### Test against multiple Python versions using uv
 
 ```
 make test-all
 ```
-
 
 ### References
 
