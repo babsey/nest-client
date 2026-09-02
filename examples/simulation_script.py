@@ -1,4 +1,4 @@
-# nest_script.py
+# simulation_script.py
 #
 # This file is part of NEST.
 #
