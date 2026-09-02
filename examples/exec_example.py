@@ -26,5 +26,5 @@ print("Running client exec example using NEST via NEST Server")
 # Initialize NEST client
 nest = NESTClient()
 
-data = nest.from_file(Path(__file__).parent / "simulation_script.py", "data")
-print(data)
+n_events = nest.from_file(Path(__file__).parent / "simulation_script.py", "n_events")["data"]
+print("Number of events:", n_events)
