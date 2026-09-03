@@ -1,7 +1,7 @@
 [project]
 name = "nest-client"
 version = "0.2.0b2"
-description = "NEST Client sends JSON requests to NEST Server."
+description = "A Python-based client for the NEST Server"
 readme = "README.md"
 requires-python = ">=3.10"
 license-files = ["LICENSE"]
@@ -57,8 +57,8 @@ dev = [
   "ruff>=0.16.5",
 ]
 
-# nest = [
-#   "nest-server@git+ssh://git@github.com/nest/nest-server.git",
+# server = [
+#   "nest-server>=3.0.0b2",
 # ]
 
 [build-system]
