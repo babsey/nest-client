@@ -10,7 +10,7 @@ test:
 	uv run pytest
 
 coverage:
-	uv run --env-file .env coverage run --source=./src/nest_client -m pytest
+	uv run coverage run --source=./src/nest_client -m pytest
 	uv run coverage report
 
 lint:
