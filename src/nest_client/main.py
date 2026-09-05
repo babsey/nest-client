@@ -17,6 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with NEST.  If not, see <http://www.gnu.org/licenses/>.
 
+from pathlib import Path
+
 import requests
 from werkzeug.exceptions import BadRequest
 
@@ -54,7 +56,7 @@ class NESTClient:
 
         return method
 
-    def api_call(self, call: str, args: list | None = None, kwargs: dict | None = None):
+    def api_call(self, call: str, args: list | tuple | None = None, kwargs: dict | None = None):
 
         if args is None:
             args = []
@@ -75,8 +77,8 @@ class NESTClient:
         response = self.post("/exec", json=params)
         return encode(response)
 
-    def from_file(self, filename: str, return_vars: str | list[str] | None = None):
-        with open(filename, "r") as f:
+    def from_file(self, filename: str | Path, return_vars: str | list[str] | None = None):
+        with open(filename) as f:
             lines = f.readlines()
         script = "".join(lines)
 
