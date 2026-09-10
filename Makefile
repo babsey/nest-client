@@ -1,7 +1,7 @@
 PYTHON_VERSIONS := 3.10 3.11 3.12 3.13 3.14
 TEST_PY_TARGETS := $(addprefix test-py,$(PYTHON_VERSIONS))
 
-.PHONY: sync pre-commit test coverage lint format clean test-all
+.PHONY: sync pre-commit test test-mpi coverage lint format clean test-all
 
 sync:
 	uv sync
@@ -11,6 +11,9 @@ pre-commit:
 
 test:
 	uv run pytest -v
+
+test-mpi:
+	uv run pytest -v -m 'not not_mpi'
 
 coverage:
 	uv run coverage run --source=./src/nest_client -m pytest
